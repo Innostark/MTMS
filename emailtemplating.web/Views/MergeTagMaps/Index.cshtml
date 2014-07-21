@@ -1,0 +1,71 @@
+﻿@{
+    ViewBag.Title = "Merge Tag Maps";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<p><strong>@Html.ActionLink("View the Merge Tag Maps Grid", "Grid")</strong></p>
+
+<p>
+    As we saw in the <strong>@Html.ActionLink("explanation of message templates", "Index", "Templates")</strong>,
+    <code>merge tags</code> are used to customize emails.  A merge tag map (<code>MergeVarMap</code>)
+    describes which property in a data model should be used to replace which merge tag.
+</p>
+<p>
+    So merge tag maps (<code>MergeVarMap</code>) contain a list of <code>MergeVarMapItems</code> that describe this replacement 
+    relationship between the data model and the template body.  The maps also include ID and Name properties to help 
+    keep track of them.
+</p>
+
+<h4>Sample Map</h4>
+
+<table class="table table-bordered" style="width: 400px;">
+    <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Tags</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>101</td>
+            <td>Sample</td>
+            <td>
+
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Variable</th>
+                            <th>Propery</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>name</td>
+                            <td>FirstName</td>
+                        </tr>
+                        <tr>
+                            <td>dow</td>
+                            <td>ContactDay</td>
+                        </tr>
+                        <tr>
+                            <td>product_line</td>
+                            <td>Product</td>
+                        </tr>
+                    </tbody>
+                </table>
+
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+<p>
+    The <strong>@Html.ActionLink("Merge Tag Maps Grid", "Grid")</strong>
+    displays all of these maps and allows you to perform Add, Edit, and Delete functions on these maps.
+    As these maps can be used by more than one template, this section of the UI allows the
+    user to update a map and have it apply to all associated templates.
+</p>

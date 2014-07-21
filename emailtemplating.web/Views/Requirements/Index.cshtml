@@ -1,0 +1,129 @@
+﻿@{
+    ViewBag.Title = "Requirements";
+}
+
+<h2>
+    @Html.ActionLink((string)ViewBag.Title, "Index")
+</h2>
+
+<h3>Summary</h3>
+<p>
+    This project involves the development of a backend (SQL Servier Compact) database 
+    and associated data access object (e.g. Entity Framework) that mirror existing POCO objects
+    in the <code>EmailTempating.Models</code> project.
+
+    Once the backend and data access has been resolved, the focus of the project is on the
+    user experience for managing the template data.  The template management system should 
+    provide pages to all for the basic CRUD operations.
+    
+    Finally, the system needs to be able to handle passing messaging requests from any
+    site page.  This requirement is the least rigid in terms of how it should be resolved but
+    is the most complex and requires the most creativity.
+</p>
+
+<h3>Data Access</h3>
+<p>
+    We will eventually porting this system to a SQL Server (2012) database, but for development purposes, 
+    we would like to use a SQL Server Compact database to store the template data.  We leave the creation of the
+    tables to you.  You may use Code First and migrations to build the tables, but the delivered solutions 
+    should remove this code (disable and remove migrations) as we cannot use migrations on our data server.
+</p>
+<p>
+    Your data access layer should provide for CRUD operations on the data and manage connections to the database.
+    It should follow the 
+    <a href="http://www.asp.net/mvc/tutorials/getting-started-with-ef-5-using-mvc-4/implementing-the-repository-and-unit-of-work-patterns-in-an-asp-net-mvc-application" target="_blank">
+        Repository and Unit of Work Patterns.
+    </a>
+</p>
+
+<h3>Template Management</h3>
+<p class="strong">
+    @Html.ActionLink("What is a template?", "Index", "Templates")
+</p>
+<p>
+    The template management pages should allow a user to view existing @Html.ActionLink("templates", "Index", "Templates"), make changes to any template, 
+    add a new template, and delete any template.
+    These requirements are best seen in the @Html.ActionLink("mock-up", "Grid", "Templates") but requires the
+    following routes...
+</p>
+<ol>
+    <li>
+        <h4>@Html.ActionLink("Template Grid", "Grid", "Templates")</h4>
+        <p>
+            The template grid should display all existing templates.  It should also provide links to add a new template, 
+            edit an existing template, and delete an existing template.
+        </p>
+    </li>
+    <li>
+        <h4>@Html.ActionLink("Edit Template", "Grid", "Templates")</h4>
+        <p>
+            The Edit Template page should allow for basic changes to the fields: Name, Description, and Body.
+            It should also allow for the user to select a merge map (<code>MergeVarMap</code> object) from the list of existing entries.
+        </p>
+        <p>
+            Additionally, the page should allow for the creation of a new merge map (<code>MergeVarMap</code>) option including the setting 
+            of the list of map items.  All this is done without leaving the page using AJAX/JSON (via JQuery).
+        </p>
+    </li>
+    <li>
+        <h4>@Html.ActionLink("Add Template", "Add", "Templates")</h4>
+        <p>
+            The add template functionally can utilize the edit template route but with a blank template.
+        </p>
+    </li>
+    <li>
+        <h4>@Html.ActionLink("Delete Template", "Delete", "Templates")</h4>
+        <p>
+            The delete template should confirm that the user really wants to delete the template.
+        </p>
+    </li>
+    <li>
+        <h4>@Html.ActionLink("Merge Tag Maps Grid", "Grid", "MergeTagMaps")</h4>
+        <p>
+            The merge tag map grid should display all existing <code>MergeVarMap</code> objects.  
+            It should also provide links to add a new map, 
+            edit an existing map, and delete an existing map.
+        </p>
+    </li>
+    <li>
+        <h4>@Html.ActionLink("Edit Merge Tag Maps", "Edit", "MergeTagMaps")</h4>
+        <p>
+            The Edit Merge Tag Maps page should allow for changes to the name field
+            and allow for adding, editing, and deleting the various <code>MergeVarMapItem</code> objects
+            associated with the map.
+        </p>
+    </li>
+    <li>
+        <h4>@Html.ActionLink("Add Merge Tag Maps", "Add", "MergeTagMaps")</h4>
+        <p>
+            The add Merge Tag Maps functionally can utilize the edit Merge Tag Maps route but with a blank map.
+        </p>
+    </li>
+    <li>
+        <h4>@Html.ActionLink("Delete Merge Tag Maps", "Delete", "MergeTagMaps")</h4>
+        <p>
+            The delete Merge Tag Maps should confirm that the user really wants to delete the map.
+        </p>
+    </li>
+</ol>
+
+<h3>Handle Message Requests</h3>
+<p>
+    The system into which this project will eventually be encorporated has numerous areas where emails 
+    are sent to the user using a templated messaging system.  Some of these are tiggered by user actions 
+    (e.g. account creation or password reset request).  Others are more direct.  For example, while a 
+    user is viewing a grid of higher than normal sales data, he/she can request that an email be sent to the employees 
+    using a template that incorporates both the employeed data and the sales data. (See "@Html.ActionLink("send a message", "Index", "Messages"))"
+    for examples.)
+</p>
+<p>
+    The mechanism for handling these requests must be able to grow as the system grows.  For example,
+    we want it easy to add emailing functionality to a new page (e.g. lower than normal sales data).
+</p>
+
+<h3>Twitter Bootstrap <small>v3.x</small></h3>
+<p>
+    This system uses the Twitter Bootstrap framework for styling the major elements of the site.  Your solution
+    should make use of the framework's styles and components.  For example, all forms are formatted using the
+    "horizontal form" styling from the framework.
+</p>

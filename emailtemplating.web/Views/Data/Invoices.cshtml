@@ -1,0 +1,55 @@
+﻿@model IEnumerable<EmailTemplating.SampleData.Invoice>
+
+@{
+    ViewBag.Title = "Invoices";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<table class="table table-striped table-hover">
+    <caption>@(Model.Count().ToString()) Records Found</caption>
+    <thead>
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Date)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.InvoiceID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmployeeID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.CustomerID)
+        </th>
+        <th>Items</th>
+        <th>
+            @Html.DisplayNameFor(model => model.Total)
+        </th>
+    </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Date)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.InvoiceID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmployeeID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.CustomerID)
+        </td>
+        <td>
+            @string.Join(", ", item.Items.Select(m => m.Description).ToArray())
+        </td>
+        <td>
+            @item.Total.ToString("c")
+        </td>
+    </tr>
+}
+    </tbody>
+</table>

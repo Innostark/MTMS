@@ -1,0 +1,22 @@
+﻿header, footer, nav, section {
+    display: block;
+}
+
+
+body {
+    padding-top: 80px;
+}
+
+footer { 
+    background: #848485;
+    border-top: solid 2px #d2d6e2;
+    border-bottom: solid 2px #d2d6e2;
+
+    margin: 3em 0;
+    color: #d2d6e2;
+}
+footer > .container { margin-top: 1px; margin-bottom: 1px; }
+
+.strong { font-weight: bold; }
+.small { font-size: 85%; }
+.mono { font-family: monospace; }

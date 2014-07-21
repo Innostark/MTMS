@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "Sample Data";
+}
+
+<h2>@ViewBag.Title</h2>
+
+<h4>Explore the sample datasets (these are "static" and are automatically created when the app starts).</h4>
+<ul>
+    <li>@Html.ActionLink("Employees", "Employees", "Data")</li>
+    <li>@Html.ActionLink("Customers", "Customers", "Data")</li>
+    <li>@Html.ActionLink("Invoices (raw)", "Invoices", "Data")</li>
+    <li>@Html.ActionLink("Invoices (vm)", "InvoicesVM", "Data")</li>
+</ul>
+

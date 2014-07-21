@@ -1,0 +1,53 @@
+﻿@{
+    ViewBag.Title = "Email Templating System";
+}
+
+
+<div class="row">
+    <div class="col-lg-6">
+
+        <h2>@ViewBag.Title</h2>
+
+
+        <div class="panel panel-default">
+            <div class="panel-heading strong">Options</div>
+            <div class="panel-body">
+                <p>
+                    Select from the options below...
+                </p>
+            </div>
+
+            <!-- List group -->
+            <ul class="list-group">
+                <li class="list-group-item">
+                    @Html.ActionLink("Requirements", "Index", "Requirements")
+                    <br />
+                    <span class="small text-muted">List of the requirements for tihs project.</span>
+                </li>
+                <li class="list-group-item">
+                    @Html.ActionLink("Templates", "Index", "Templates")
+                    <br />
+                    <span class="small text-muted">List of the templates where you can add, update, and delete.</span>
+                </li>
+                <li class="list-group-item">
+                    @Html.ActionLink("Send Message", "Build", "Messages")
+                    <br />
+                    <span class="small text-muted">Sample where you can select the recipients for message, choose a template and then "send" the message.</span>
+                </li>
+                <li class="list-group-item">
+                    @Html.ActionLink("Explore Sample Data", "Index", "Data")
+                    <br />
+                    <span class="small text-muted">Explore the sample datasets (these are "static" and are automatically created when the app starts).</span>
+                    <ul>
+                        <li>@Html.ActionLink("Employees", "Employees", "Data")</li>
+                        <li>@Html.ActionLink("Customers", "Customers", "Data")</li>
+                        <li>@Html.ActionLink("Invoices (raw)", "Invoices", "Data")</li>
+                        <li>@Html.ActionLink("Invoices (vm)", "InvoicesVM", "Data")</li>
+                    </ul>
+                </li>
+            </ul>
+        </div>
+
+    </div>
+</div>
+

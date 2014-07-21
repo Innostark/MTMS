@@ -1,0 +1,6 @@
+﻿@model EmailTemplating.SampleData.Customer
+<span title="customer id #@Model.ID.ToString()">
+    @Html.DisplayFor(m => m.FirstName) 
+    @Html.DisplayFor(m => m.LastName)
+</span>
+

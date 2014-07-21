@@ -1,0 +1,51 @@
+﻿@model IEnumerable<EmailTemplating.Models.MergeVarMap>
+
+@{
+    ViewBag.Title = "Merge Tag Maps";
+}
+
+<h2>Merge Tag Maps <small>GRID</small></h2>
+
+<p>
+    @Html.ActionLink("Create New Map", "Add")
+</p>
+<table class="table table-striped table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.ID)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Name)
+        </th>
+        <th>
+           Map
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.ID)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Name)
+        </td>
+        <td class="mono">
+            @foreach (var tag in item.MapItems)
+            {
+                <div>
+                    @Html.DisplayFor(m => tag.VariableName)
+                    =&gt;
+                    @Html.DisplayFor(m => tag.PropertyName)
+                </div>
+            }
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.ID }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.ID })
+        </td>
+    </tr>
+}
+
+</table>

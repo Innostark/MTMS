@@ -1,0 +1,65 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Email Templating System">
+    <meta name="author" content="(c)2014 Banning Applications - all rights reserved">
+    <link rel="icon" href="@Url.Content("~/Content/favicon.ico")">
+
+    <title>@ViewBag.Title</title>
+
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+</head>
+<body>
+    <header class="navbar navbar-inverse navbar-fixed-top" role="navigation">
+        <div class="container">
+            <div class="navbar-header">
+                <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a class="navbar-brand" href="@Url.Action("Index", "Home")">Email Templating</a>
+            </div>
+            <div class="collapse navbar-collapse">
+                <ul class="nav navbar-nav">
+                    <li>@Html.ActionLink("Requirements", "Index", "Requirements")</li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                            Sample Data
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu" role="menu">
+                            <li>@Html.ActionLink("Employees", "Employees", "Data")</li>
+                            <li>@Html.ActionLink("Customers", "Customers", "Data")</li>
+                            <li>@Html.ActionLink("Invoices (raw)", "Invoices", "Data")</li>
+                            <li>@Html.ActionLink("Invoices (vm)", "InvoicesVM", "Data")</li>
+                        </ul>
+                    </li>
+                    <li>@Html.ActionLink("Templates", "Index", "Templates")</li>
+                    <li>@Html.ActionLink("Send Message", "Index", "Message")</li>
+                </ul>
+            </div>
+            <!--/.nav-collapse -->
+        </div>
+    </header>
+
+    <div class="container">
+        @RenderBody()
+    </div>
+
+    <footer>
+        <div class="container">
+            &copy; 2014 - Hallpass &amp; Friends, LLC <small>(Banning Applications)</small> - all rights reserved
+        </div>
+    </footer>
+
+    @Scripts.Render("~/bundles/core")
+    @Scripts.Render("~/bundles/app/core")
+    @RenderSection("scripts", required: false)
+</body>
+</html>
