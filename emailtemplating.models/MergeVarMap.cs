@@ -9,6 +9,7 @@ namespace EmailTemplating.Models
 {
     public class MergeVarMap
     {
+        [Key]
         [Required]
         public int ID { get; set; }
 

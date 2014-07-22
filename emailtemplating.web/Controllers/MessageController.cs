@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Web;
 using System.Web.Mvc;
+using EmailTemplating.Models;
+using EmailTemplating.Repository;
+using EmailTemplating.Repository.Repositories;
 
 namespace EmailTemplating.Web.Controllers
 {
@@ -53,6 +55,39 @@ namespace EmailTemplating.Web.Controllers
             return View(dataset.BuildEmployeeSalesSummaryViewModel(min_date, max_date, period).OrderBy(m => m.LastName).ThenBy(m => m.FirstName));
         }
 
+        public void TestPattern()
+        {
+            UnitOfWork uow = new UnitOfWork();
+
+            //NOTE: Test sample for loading 
+            IQueryable<Message> messages = uow.MessageRepository.GetAllMessageSorted();
+
+
+            //Mote: Test sample for adding a record
+            Message message = new Message
+                {
+                    Body = "Body",
+                    CreateDate = DateTime.Now,
+                    IsProcessed = false,
+                    UpdateDate = DateTime.Now,
+                    From = new MessageAddress {Address = "Address", DisplayName = "DisplayName"},
+                    Recipients =
+                        new List<Recipient> {new Recipient {Address = "Add", DisplayName = "Dis", MergeTags = null}},
+                    Subject = "Subject"
+
+                };
+            uow.MessageRepository.Add(message);
+            uow.MessageRepository.SaveChanges();
+
+            uow = new UnitOfWork();
+
+            //Note: Sample for update a record
+
+            Message messageToUpdate = uow.MessageRepository.FindById(message.ID);
+            messageToUpdate.CreateDate = DateTime.Now.AddDays(2);
+            uow.MessageRepository.SaveChanges();
+
+        }
 
     }
 }

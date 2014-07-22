@@ -9,6 +9,7 @@ namespace EmailTemplating.Models
 {
     public class Template
     {
+        [Key]
         [Required]
         public int ID { get; set; }
 

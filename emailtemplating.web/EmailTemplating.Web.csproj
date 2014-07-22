@@ -232,7 +232,9 @@
     <Content Include="Scripts\moment.js" />
     <Content Include="Scripts\moment.min.js" />
     <Content Include="Scripts\_references.js" />
-    <Content Include="Web.config" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
     <Content Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </Content>
@@ -279,6 +281,10 @@
     <ProjectReference Include="..\EmailTemplating.Process\EmailTemplating.Process.csproj">
       <Project>{04ea57f5-f212-44f2-8b65-d9688f0144f3}</Project>
       <Name>EmailTemplating.Process</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EmailTemplating.Repository\EmailTemplating.Repository.csproj">
+      <Project>{4d0725aa-e821-4748-9c88-fd5ef813a9f6}</Project>
+      <Name>EmailTemplating.Repository</Name>
     </ProjectReference>
     <ProjectReference Include="..\EmailTemplating.SampleData\EmailTemplating.SampleData.csproj">
       <Project>{65ff74e0-7965-4d89-8712-2678369ab50e}</Project>
