@@ -12,13 +12,16 @@ namespace EmailTemplating.Repository.Repositories
     public class MessageRepository : BaseRepository<Message> , IMessageRepository
     {
         #region Constructor
+        /// <summary>
+        /// Constructor
+        /// </summary>
         internal MessageRepository(BaseDbContext baseDbContext) : base(baseDbContext)
         {            
         }
         #endregion
         #region Protected
         /// <summary>
-        /// DbSet
+        /// Messages
         /// </summary>
         protected override IDbSet<Message> DbSet
         {
@@ -40,7 +43,12 @@ namespace EmailTemplating.Repository.Repositories
         /// </summary>
         public Message FindById(int id)
         {
-            return DbSet.Include(message => message.From).Include(message => message.Recipients).Include(message => message.Template).FirstOrDefault(message => message.ID == id);
+            return DbSet.Include(message => message.From).Include(message => message.Recipients).Include(message => message.Template).FirstOrDefault(message => message.MessageID == id);
+        }
+
+        public override IQueryable<Message> GetAll()
+        {
+            return DbSet.Include(m => m.Template);
         }
         #endregion
     }

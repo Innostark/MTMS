@@ -1,9 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace EmailTemplating.Models
 {
@@ -11,12 +7,18 @@ namespace EmailTemplating.Models
     {
         [Key]
         [Required]
-        public int ID { get; set; }
+        public int MergeVarMapItemID { get; set; }
 
         [Required]
         public string VariableName { get; set; }
 
         [Required]
         public string PropertyName { get; set; }
+
+        [Required]        
+        public int MergeVarMapID { get; set; }
+        
+        [ForeignKey("MergeVarMapID")]
+        public MergeVarMap MergeVarMap { get; set; }        
     }
 }

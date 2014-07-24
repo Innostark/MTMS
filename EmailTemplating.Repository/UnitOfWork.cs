@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Configuration;
 using EmailTemplating.Repository.Base;
+using EmailTemplating.Repository.Interfaces;
 using EmailTemplating.Repository.Repositories;
 
 namespace EmailTemplating.Repository
@@ -13,8 +14,16 @@ namespace EmailTemplating.Repository
         #region Private 
         readonly string connectionString = ConfigurationManager.ConnectionStrings["EmailTemplatingConnectionString"].ConnectionString;
         private readonly BaseDbContext baseDbContext;
-        private MessageRepository messageRepository;
+        private IMessageRepository messageRepository;
+        private IMergeVarMapRepository mergerVarMapRepository;
+        private IMergeVarMapItemRepository mergerVarMapItemRepository;
+        private ITemplateRepository templateRepository;
+        private IMergeTagVarRepository mergeTagVarRepository;
+
         private bool disposed;
+        /// <summary>
+        /// Dispose the context
+        /// </summary>
         protected virtual void Dispose(bool disposing)
         {
             if (!disposed)
@@ -42,10 +51,41 @@ namespace EmailTemplating.Repository
         /// <summary>
         /// Message Repository
         /// </summary>
-        public MessageRepository MessageRepository
+        public IMessageRepository MessageRepository
         {
             get { return messageRepository ?? (messageRepository = new MessageRepository(baseDbContext)); }
         }
+
+        /// <summary>
+        /// Merge Var Map Repository
+        /// </summary>
+        public IMergeVarMapRepository MergerVarMapRepository
+        {
+            get { return mergerVarMapRepository ?? (mergerVarMapRepository = new MergeVarMapRepository(baseDbContext)); }
+        }
+
+        /// <summary>
+        /// Merge Var Map Item Repository
+        /// </summary>
+        public IMergeVarMapItemRepository MergerVarMapItemRepository
+        {
+            get { return mergerVarMapItemRepository ?? (mergerVarMapItemRepository = new MergeVarMapItemRepository(baseDbContext)); }
+        }
+        /// <summary>
+        /// Template Repository
+        /// </summary>
+        public ITemplateRepository TemplateRepository
+        {
+            get { return templateRepository ?? (templateRepository = new TemplateRepository(baseDbContext)); }
+        }
+        /// <summary>
+        /// MergeTagVarRepository Repository
+        /// </summary>
+        public IMergeTagVarRepository MergeTagVarRepository
+        {
+            get { return mergeTagVarRepository ?? (mergeTagVarRepository = new MergeTagVarRepository(baseDbContext)); }
+        }
+
         /// <summary>
         /// Dispose
         /// </summary>

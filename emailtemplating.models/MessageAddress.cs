@@ -4,8 +4,9 @@ namespace EmailTemplating.Models
 {
     public class MessageAddress
     {
+        [Key]
         [Required]
-        public int ID { get; set; }
+        public int MessageAddressID { get; set; }
 
         [Required]
         [Display(Name="Recipient's Name")]

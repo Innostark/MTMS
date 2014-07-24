@@ -29,14 +29,14 @@ namespace EmailTemplating.UnitTests
                 TemplateID = 1,
                 Template = new Template()
                 {
-                    ID = 1,
+                    TemplateID = 1,
                     Name = "Testing Template",
                     Description = "This is just a test",
                     Body = "Dear *|first_name|* *|last_name|*, Your birthday is on *|birthday|* - bye, MARY",
-                    TagMapID = 10,
+                    MergeVarMapID = 10,
                     TagMap = new MergeVarMap()
                     {
-                        ID = 10,
+                        MergeVarMapID = 10,
                         Name = "Test Map",
                         MapItems = new List<MergeVarMapItem>()
                         {

@@ -221,11 +221,11 @@ namespace EmailTemplating.SampleData
             var mergemaps = new Dictionary<string, MergeVarMap>();
             mergemaps.Add("customers", new MergeVarMap()
             {
-                ID = 101,
+                MergeVarMapID = 101,
                 Name = "Customers",
                 MapItems = new List<MergeVarMapItem>()
                 {
-                    new MergeVarMapItem() { VariableName = "id", PropertyName = "ID" },
+                    new MergeVarMapItem() { VariableName = "id", PropertyName = "MergeVarMapID" },
                     new MergeVarMapItem() { VariableName = "first_name", PropertyName = "FirstName" },
                     new MergeVarMapItem() { VariableName = "last_name", PropertyName = "LastName" },
                     new MergeVarMapItem() { VariableName = "email", PropertyName = "Email" },
@@ -234,11 +234,11 @@ namespace EmailTemplating.SampleData
             });
             mergemaps.Add("employees", new MergeVarMap()
             {
-                ID = 102,
+                MergeVarMapID = 102,
                 Name = "Employees",
                 MapItems = new List<MergeVarMapItem>()
                 {
-                    new MergeVarMapItem() { VariableName = "id", PropertyName = "ID" },
+                    new MergeVarMapItem() { VariableName = "id", PropertyName = "MergeVarMapID" },
                     new MergeVarMapItem() { VariableName = "first_name", PropertyName = "FirstName" },
                     new MergeVarMapItem() { VariableName = "last_name", PropertyName = "LastName" },
                     new MergeVarMapItem() { VariableName = "email", PropertyName = "Email" },
@@ -247,11 +247,11 @@ namespace EmailTemplating.SampleData
             });
             mergemaps.Add("employees_sales_sum", new MergeVarMap()
             {
-                ID = 102,
+                MergeVarMapID = 102,
                 Name = "Employees Sales Summary",
                 MapItems = new List<MergeVarMapItem>()
                 {
-                    new MergeVarMapItem() { VariableName = "id", PropertyName = "ID" },
+                    new MergeVarMapItem() { VariableName = "id", PropertyName = "MergeVarMapID" },
                     new MergeVarMapItem() { VariableName = "first_name", PropertyName = "FirstName" },
                     new MergeVarMapItem() { VariableName = "last_name", PropertyName = "LastName" },
                     new MergeVarMapItem() { VariableName = "email", PropertyName = "Email" },
@@ -264,44 +264,44 @@ namespace EmailTemplating.SampleData
             //Password Reset
             _templates.Add(new Template()
             {
-                ID = 1,
+                TemplateID = 1,
                 Name = "Password Reset",
                 Description = "Used for sending customers instructions on how to reset their password",
                 Body = string.Format("Dear *|first_name|*, {0}{0}It looks like you need to reset your password.  Good news - just go to http://not_a_real_link.com and enter the following information...{0}email address: *|email|*{0}city: *|city|*{0}{0}Thank You!", Environment.NewLine),
-                TagMapID = mergemaps["customers"].ID,
+                MergeVarMapID = mergemaps["customers"].MergeVarMapID,
                 TagMap = mergemaps["customers"]
             });
 
             //Promotion
             _templates.Add(new Template()
             {
-                ID = 1,
+                TemplateID = 1,
                 Name = "Promotion",
                 Description = "Used for sending customers notice that we will be in their city for a special sale.",
                 Body = string.Format("Dear *|first_name|*, {0}{0}Great News.  We will be in *|city|* this weekend and will be selling our most popular items for 50% off.  The action starts at 10am and the things go fast... So don't be late!{0}{0}See you there!", Environment.NewLine),
-                TagMapID = mergemaps["customers"].ID,
+                MergeVarMapID = mergemaps["customers"].MergeVarMapID,
                 TagMap = mergemaps["customers"]
             });
 
             //Parking Violation
             _templates.Add(new Template()
             {
-                ID = 1,
+                TemplateID = 1,
                 Name = "Parking Violation",
                 Description = "Used for sending employee(s) notice that they parked in the wrong spot.",
                 Body = string.Format("Dear *|first_name|* *|last_name|*, {0}{0}Looks like you had trouble parking today.  We noticed that your car was in the wrong spot!{0}{0}Please be more careful in the future!", Environment.NewLine),
-                TagMapID = mergemaps["employees"].ID,
+                MergeVarMapID = mergemaps["employees"].MergeVarMapID,
                 TagMap = mergemaps["employees"]
             });
 
             //High Sales
             _templates.Add(new Template()
             {
-                ID = 1,
+                TemplateID = 1,
                 Name = "High Sales",
                 Description = "Used for sending employees notice that they had above average sales.",
                 Body = string.Format("Hey *|first_name|*, {0}{0}Great News.  Your sale for *|period|* were $*|total|* which puts you amoung the best in the company.  As a token of our thanks, we are sending you on an all expenses paid trip to Paris (Texas).{0}{0}Hope you have fun!", Environment.NewLine),
-                TagMapID = mergemaps["employees_sales_sum"].ID,
+                MergeVarMapID = mergemaps["employees_sales_sum"].MergeVarMapID,
                 TagMap = mergemaps["employees_sales_sum"]
             });
 

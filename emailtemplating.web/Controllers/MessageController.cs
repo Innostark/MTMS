@@ -80,14 +80,45 @@ namespace EmailTemplating.Web.Controllers
             uow.MessageRepository.SaveChanges();
 
             uow = new UnitOfWork();
+            
 
             //Note: Sample for update a record
-
-            Message messageToUpdate = uow.MessageRepository.FindById(message.ID);
+            Message messageToUpdate = uow.MessageRepository.FindById(message.MessageID - 1);
             messageToUpdate.CreateDate = DateTime.Now.AddDays(2);
             uow.MessageRepository.SaveChanges();
 
         }
+
+        public void MergeVarMap()
+        {
+            UnitOfWork uow = new UnitOfWork();
+
+            MergeVarMap map = new MergeVarMap
+                {
+                    Name = "Name", 
+                    MapItems = new List<MergeVarMapItem> { new MergeVarMapItem { PropertyName = "Property Name", VariableName = "Variable Name" }}
+                };
+            uow.MergerVarMapRepository.Add(map);
+            uow.MergerVarMapRepository.SaveChanges();
+
+            uow.Dispose();
+
+
+
+
+        }
+
+        public void EditMap()
+        {
+            UnitOfWork unitOfWork = new UnitOfWork();
+            MergeVarMap recordFromDb = unitOfWork.MergerVarMapRepository.FindByName("Name");
+            recordFromDb.MapItems[0].PropertyName = "Property Name Changed";
+            unitOfWork.MergerVarMapRepository.SaveChanges();
+
+
+        }
+
+        
 
     }
 }

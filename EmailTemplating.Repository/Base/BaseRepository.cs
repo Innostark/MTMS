@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Configuration;
 using System.Data;
 using System.Data.Entity;
 using System.Data.Entity.Migrations;
@@ -13,8 +12,7 @@ namespace EmailTemplating.Repository.Base
     /// </summary>
     public abstract class BaseRepository<TDomainClass> : IBaseRepository<TDomainClass, int>
         where TDomainClass : class 
-    {
-    
+    {    
         #region Protected
         /// <summary>
         /// Primary database set
@@ -40,14 +38,6 @@ namespace EmailTemplating.Repository.Base
         /// </summary>
         public BaseDbContext db;
 
-        
-        /// <summary>
-        /// Find entry by key
-        /// </summary>
-        public virtual IQueryable<TDomainClass> Find(TDomainClass instance)
-        {
-            return DbSet.Find(instance) as IQueryable<TDomainClass>;
-        }
         /// <summary>
         /// Find Entity by Id
         /// </summary>
@@ -73,7 +63,9 @@ namespace EmailTemplating.Repository.Base
             }
             catch(Exception ex)
             {
+                // ReSharper disable PossibleIntendedRethrow
                 throw ex;
+                // ReSharper restore PossibleIntendedRethrow
             }
         }
 

@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
+
 
 namespace EmailTemplating.Models
 {
@@ -11,7 +8,7 @@ namespace EmailTemplating.Models
     {
         [Key]
         [Required]
-        public int ID { get; set; }
+        public int TemplateID { get; set; }
 
         [Required]
         public string Name { get; set; }
@@ -22,8 +19,10 @@ namespace EmailTemplating.Models
         [Required]
         public string Body { get; set; }
 
-        public int TagMapID { get; set; }
-
+        public int MergeVarMapID { get; set; }
+        
+        [ForeignKey("MergeVarMapID")]
         public virtual MergeVarMap TagMap { get; set; }
+        
     }
 }
