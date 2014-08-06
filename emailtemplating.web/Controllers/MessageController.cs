@@ -59,34 +59,7 @@ namespace EmailTemplating.Web.Controllers
         {
             UnitOfWork uow = new UnitOfWork();
 
-            //NOTE: Test sample for loading 
-            IQueryable<Message> messages = uow.MessageRepository.GetAllMessageSorted();
-
-
-            //Mote: Test sample for adding a record
-            Message message = new Message
-                {
-                    Body = "Body",
-                    CreateDate = DateTime.Now,
-                    IsProcessed = false,
-                    UpdateDate = DateTime.Now,
-                    From = new MessageAddress {Address = "Address", DisplayName = "DisplayName"},
-                    Recipients =
-                        new List<Recipient> {new Recipient {Address = "Add", DisplayName = "Dis", MergeTags = null}},
-                    Subject = "Subject"
-
-                };
-            uow.MessageRepository.Add(message);
-            uow.MessageRepository.SaveChanges();
-
-            uow = new UnitOfWork();
             
-
-            //Note: Sample for update a record
-            Message messageToUpdate = uow.MessageRepository.FindById(message.MessageID - 1);
-            messageToUpdate.CreateDate = DateTime.Now.AddDays(2);
-            uow.MessageRepository.SaveChanges();
-
         }
 
         public void MergeVarMap()

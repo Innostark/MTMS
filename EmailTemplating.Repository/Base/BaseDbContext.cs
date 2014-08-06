@@ -28,11 +28,6 @@ namespace EmailTemplating.Repository.Base
 
         #region Public
         /// <summary>
-        /// Messages
-        /// </summary>
-        public DbSet<Message> Messages { get; set; }
-
-        /// <summary>
         /// Merge Var Maps
         /// </summary>
         public DbSet<MergeVarMap> MergeVarMaps { get; set; }
@@ -46,20 +41,11 @@ namespace EmailTemplating.Repository.Base
         /// Merge Var Map Items
         /// </summary>
         public DbSet<MergeVarMapItem> MergeVarMapsItmes { get; set; }
-
-        /// <summary>
-        /// Message Addresses
-        /// </summary>
-        public DbSet<MessageAddress> MessageAddresses { get; set; }
-
+        
         /// <summary>
         /// Templates
         /// </summary>
         public DbSet<Template> Templates { get; set; } 
-        /// <summary>
-        /// Recipients
-        /// </summary>
-        public DbSet<Recipient> Recipients { get; set; } 
         #endregion
     }
 

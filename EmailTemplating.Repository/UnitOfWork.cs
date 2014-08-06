@@ -13,8 +13,7 @@ namespace EmailTemplating.Repository
     {
         #region Private 
         readonly string connectionString = ConfigurationManager.ConnectionStrings["EmailTemplatingConnectionString"].ConnectionString;
-        private readonly BaseDbContext baseDbContext;
-        private IMessageRepository messageRepository;
+        private readonly BaseDbContext baseDbContext;        
         private IMergeVarMapRepository mergerVarMapRepository;
         private IMergeVarMapItemRepository mergerVarMapItemRepository;
         private ITemplateRepository templateRepository;
@@ -48,14 +47,6 @@ namespace EmailTemplating.Repository
         #endregion
 
         #region Public
-        /// <summary>
-        /// Message Repository
-        /// </summary>
-        public IMessageRepository MessageRepository
-        {
-            get { return messageRepository ?? (messageRepository = new MessageRepository(baseDbContext)); }
-        }
-
         /// <summary>
         /// Merge Var Map Repository
         /// </summary>

@@ -8,21 +8,13 @@ namespace EmailTemplating.Models
     public class Message
     {
         #region Persisted Properties
-        [Key]
-        [Required]
-        public int MessageID { get; set; }
-        
-        public int? MessageAddressID { get; set; }
 
-        [Required]
+        public int TemplateID { get; set; }
+        
         public string Subject { get; set; }
         
-        [Required]
         public string Body { get; set; }
 
-        public int? TemplateID { get; set; }
-
-        [Required]
         public bool IsProcessed { get; set; }
 
         [Required]
@@ -34,16 +26,11 @@ namespace EmailTemplating.Models
         
         #region Reference Entities
 
-        [Required]
-        [ForeignKey("MessageAddressID")]
         public MessageAddress From { get; set; }
 
-        [Required]
         public List<Recipient> Recipients { get; set; }
-
         
-        [ForeignKey("TemplateID")]
-        public virtual Template Template { get; set; }
+        public Template Template { get; set; }
 
         #endregion
         public Message()

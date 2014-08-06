@@ -13,6 +13,7 @@ namespace EmailTemplating.Models
 
 
         [Required]
+        [StringLength(250, ErrorMessage = "Merge Var Map name must not exceed 250 characters")]
         public string Name { get; set; }
         #endregion
 

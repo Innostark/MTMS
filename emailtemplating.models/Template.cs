@@ -11,14 +11,17 @@ namespace EmailTemplating.Models
         public int TemplateID { get; set; }
 
         [Required]
+        [StringLength(250, ErrorMessage = "Template name must not exceed 250 characters")]
         public string Name { get; set; }
 
         [Required]
+        [StringLength(1000, ErrorMessage = "Template description must not exceed 1000 characters")]
         public string Description { get; set; }
 
-        [Required]
+        [Required]        
         public string Body { get; set; }
 
+        [ForeignKey("TagMap")]
         public int MergeVarMapID { get; set; }
         
         [ForeignKey("MergeVarMapID")]

@@ -10,12 +10,15 @@ namespace EmailTemplating.Models
         public int MergeVarMapItemID { get; set; }
 
         [Required]
+        [StringLength(250, ErrorMessage = "Variable name must not exceed 250 characters")]
         public string VariableName { get; set; }
 
         [Required]
+        [StringLength(250, ErrorMessage = "Property Name must not exceed 250 characters")]
         public string PropertyName { get; set; }
 
-        [Required]        
+        [Required]
+        [ForeignKey("MergeVarMap")]
         public int MergeVarMapID { get; set; }
         
         [ForeignKey("MergeVarMapID")]

@@ -16,14 +16,7 @@ namespace EmailTemplating.Models
         [Required]
         public string Value { get; set; }
 
-        public int RecipientID { get; set; }
-
         #endregion
 
-        #region Reference Entities
-
-        [ForeignKey("RecipientID")]
-        public Recipient Recipient { get; set; }
-        #endregion
     }
 }
