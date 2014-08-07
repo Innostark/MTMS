@@ -25,7 +25,7 @@ function validateRadioButtons() {
         }
     }
     if (counter == -1) {
-    debugger
+
         toastr.error("Please select MergeVarMaps Tags");
         return false;
     } else {
