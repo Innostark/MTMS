@@ -11,6 +11,7 @@ namespace EmailTemplating.Web
             bundles.Add(new ScriptBundle("~/bundles/core").Include(new string[] {
                         "~/Scripts/jquery-{version}.js",
                         "~/Scripts/moment.js",
+                        "~/Scripts/toastr.js",
                         "~/Scripts/bootstrap.js"}));
 
             bundles.Add(new ScriptBundle("~/bundles/app/core").Include(new string[] {
@@ -34,6 +35,7 @@ namespace EmailTemplating.Web
             bundles.Add(new StyleBundle("~/Content/css")
                 .Include("~/Content/bootstrap.css", 
                         "~/Content/bootstrap-theme.css",
+                        "~/Content/toastr.css",
                         "~/Content/site.css"));
 
             bundles.Add(new StyleBundle("~/Content/themes/base/css").Include(

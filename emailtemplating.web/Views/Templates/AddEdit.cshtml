@@ -35,24 +35,20 @@
                       @Html.TextAreaFor(model => model.Template.Body, new { @class = " mandatory form-control"})
                   </div>
               </div>
-        
-              <label  >Select MergeVarMaps Tags</label>
-              <div class="col-sm-10">
-                  @foreach (var mergeVarMap in Model.MergeVarMaps)
+         <div class="form-group">
+              <label class="col-sm-3 control-label"  >Select MergeVarMaps Tags</label>
+              
+              
+             </div>
+        <div class="col-sm-offset-2 col-sm-10 ">
+                @foreach (var mergeVarMap in Model.MergeVarMaps)
                   {
-                      @Html.RadioButton("SelectedMergeVarMap", @mergeVarMap.MergeVarMapID,(Model.Template!=null && mergeVarMap.MergeVarMapID==Model.Template.MergeVarMapID));
-                      <label for='@mergeVarMap.Name'> @mergeVarMap.Name</label>   
+                      @Html.RadioButton("SelectedMergeVarMap", @mergeVarMap.MergeVarMapID, (Model.Template != null && mergeVarMap.MergeVarMapID == Model.Template.MergeVarMapID));
+                      <label  for='@mergeVarMap.Name'> @mergeVarMap.Name</label>   
                       <br/>
                   }
-              </div>
+              
+        </div>
           </fieldset>
 }         
-<script type="text/javascript" src="~/Scripts/app/ValidateFields.js"></script>      
-<script type="text/javascript" >
-    
-
-    function CheckValue() {
-        
-    }
-
-</script>     
+<script type="text/javascript" src="~/Scripts/app/ValidateFields.js"></script> 
