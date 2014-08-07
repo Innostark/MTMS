@@ -67,6 +67,8 @@ namespace EmailTemplating.Web.Controllers
             MergeVarMap mergeVarMapToUpdate = uow.MergerVarMapRepository.Find(obj.MergeVarMapID);
             mergeVarMapToUpdate.Name = obj.Name;
             uow.MergerVarMapRepository.SaveChanges();
+
+            DeleteExisting(uow, obj, mergeVarMapToUpdate);
             if (obj.MapItems != null)
             {
                 foreach (var mergeVarMapItem in obj.MapItems)
@@ -92,13 +94,21 @@ namespace EmailTemplating.Web.Controllers
                     }
                 }
             }
-
-            IEnumerable<MergeVarMapItem> mergeVarMapItems = mergeVarMapToUpdate.MapItems.Where(itemsToBeDeleted => obj.MapItems.Any(newItems => itemsToBeDeleted.MergeVarMapItemID != newItems.MergeVarMapItemID));
-            foreach (var mergeVarMapItem in mergeVarMapItems)
-            {
-                mergeVarMapToUpdate.MapItems.Remove(mergeVarMapItem);
-            }
             uow.MergerVarMapItemRepository.SaveChanges();
+        }
+
+        private static void DeleteExisting(UnitOfWork uow, MergeVarMap obj, MergeVarMap mergeVarMapToUpdate)
+        {
+            IEnumerable<MergeVarMapItem> mergeVarMapItems =
+                mergeVarMapToUpdate.MapItems.Where(
+                    itemsToBeDeleted =>
+                    obj.MapItems.Any(
+                        newItems =>
+                        itemsToBeDeleted.MergeVarMapItemID != newItems.MergeVarMapItemID && newItems.MergeVarMapItemID > 0));
+            foreach (MergeVarMapItem mergeVarMapItem in mergeVarMapItems.ToList())
+            {
+                uow.MergerVarMapItemRepository.Delete(mergeVarMapItem);
+            }
         }
 
         [HttpPost]
