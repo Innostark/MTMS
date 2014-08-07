@@ -99,15 +99,24 @@ namespace EmailTemplating.Web.Controllers
 
         private static void DeleteExisting(UnitOfWork uow, MergeVarMap obj, MergeVarMap mergeVarMapToUpdate)
         {
-            IEnumerable<MergeVarMapItem> mergeVarMapItems =
-                mergeVarMapToUpdate.MapItems.Where(
-                    itemsToBeDeleted =>
-                    obj.MapItems.Any(
-                        newItems =>
-                        itemsToBeDeleted.MergeVarMapItemID != newItems.MergeVarMapItemID && newItems.MergeVarMapItemID > 0));
-            foreach (MergeVarMapItem mergeVarMapItem in mergeVarMapItems.ToList())
+            if (mergeVarMapToUpdate.MapItems.Count > 0 && (obj.MapItems == null || obj.MapItems.Count == 0))
+                foreach (MergeVarMapItem mergeVarMapItem in mergeVarMapToUpdate.MapItems.ToList())
+                {
+                    uow.MergerVarMapItemRepository.Delete(mergeVarMapItem);
+                }
+            else
             {
-                uow.MergerVarMapItemRepository.Delete(mergeVarMapItem);
+                IEnumerable<MergeVarMapItem> mergeVarMapItems =
+                    mergeVarMapToUpdate.MapItems.Where(
+                        itemsToBeDeleted =>
+                        !obj.MapItems.Any(
+                            newItems =>
+                            itemsToBeDeleted.MergeVarMapItemID == newItems.MergeVarMapItemID &&
+                            newItems.MergeVarMapItemID > 0));
+                foreach (MergeVarMapItem mergeVarMapItem in mergeVarMapItems.ToList())
+                {
+                    uow.MergerVarMapItemRepository.Delete(mergeVarMapItem);
+                }
             }
         }
 
