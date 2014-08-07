@@ -38,6 +38,16 @@ namespace EmailTemplating.Repository.Repositories
         public Template FindTemplate(int id)
         {
             return DbSet.Include(m => m.TagMap).FirstOrDefault(m => m.TemplateID== id);
-        } 
+        }
+
+        public bool MergeVarMapExist(int mergeVarMapId)
+        {
+            var items = (DbSet.Include(x => x.TagMap).Include(x => x.TagMap.MapItems)).ToList();
+            if (items.Any(x=>x.MergeVarMapID == mergeVarMapId))
+            {
+                return false;
+            }
+            return true;
+        }
     }
 }

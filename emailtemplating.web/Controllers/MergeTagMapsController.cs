@@ -128,6 +128,11 @@ namespace EmailTemplating.Web.Controllers
         {
             using (UnitOfWork uow = new UnitOfWork())
             {
+                if (!uow.TemplateRepository.MergeVarMapExist(id))
+                {
+                    TempData["ErrorMessage"] = "MergeVar is being used in Template";
+                    return RedirectToAction("Grid");
+                }
                 MergeVarMap recordToDelete = uow.MergerVarMapRepository.Find((int)id);
                 uow.MergerVarMapRepository.Delete(recordToDelete);
                 uow.MergerVarMapRepository.SaveChanges();
