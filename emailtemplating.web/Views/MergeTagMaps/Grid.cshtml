@@ -4,8 +4,6 @@
     ViewBag.Title = "Merge Tag Maps";
 }
 
-<h2>Merge Tag Maps </h2>
-
 <p>
     @Html.ActionLink("Create New Map", "AddEdit")
 </p>
@@ -44,6 +42,7 @@
         <td>
             @Html.ActionLink("Edit", "AddEdit", new { id=item.MergeVarMapID }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.MergeVarMapID })
+            <input type="hidden" id="errorMSG" value=@TempData["ErrorMessage"]/>
         </td>
     </tr>
 }

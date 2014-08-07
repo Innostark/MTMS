@@ -10,5 +10,6 @@ namespace EmailTemplating.Repository.Interfaces
     {
         IEnumerable<Template> GetAllTemplates();
         Template FindTemplate(int id);
+        bool MergeVarMapExist(int mergeVarMapId);
     }
 }
