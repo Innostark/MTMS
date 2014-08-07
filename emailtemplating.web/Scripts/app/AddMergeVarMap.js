@@ -11,20 +11,3 @@
     table.append(newRow);
     document.getElementById('mapItemsCount').value = parseInt(document.getElementById('mapItemsCount').value) + 1;
 }
-function ValidateFields() {
-    debugger
-    var missingCounter = 0;
-    var fields = $('.mandatory'); //Array for all textboxes
-    for (var i = 0; i < fields.length; i++) {
-        var value = $(fields[i]).val();
-        if (value.toString().length == 0) {
-            missingCounter++;
-            $(fields[i]).css('border-color', 'red');
-        }
-        else
-            $(fields[i]).css('border-color', 'gainsboro');
-    }
-    if (missingCounter > 0)
-        return false;
-    return true;
-}

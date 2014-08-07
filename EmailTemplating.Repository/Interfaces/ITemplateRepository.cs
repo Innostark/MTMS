@@ -9,5 +9,6 @@ namespace EmailTemplating.Repository.Interfaces
     public interface ITemplateRepository : IBaseRepository<Template, int>
     {
         IEnumerable<Template> GetAllTemplates();
+        Template FindTemplate(int id);
     }
 }

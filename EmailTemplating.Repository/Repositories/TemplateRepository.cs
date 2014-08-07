@@ -1,5 +1,6 @@
 ﻿using System.Collections.Generic;
 using System.Data.Entity;
+using System.Linq;
 using EmailTemplating.Models;
 using EmailTemplating.Repository.Base;
 using EmailTemplating.Repository.Interfaces;
@@ -32,7 +33,11 @@ namespace EmailTemplating.Repository.Repositories
 
         public IEnumerable<Template> GetAllTemplates()
         {
-            return DbSet.Include(x => x.TagMap);
+            return DbSet.Include(x => x.TagMap).Include(x => x.TagMap.MapItems);
+        }
+        public Template FindTemplate(int id)
+        {
+            return DbSet.Include(m => m.TagMap).FirstOrDefault(m => m.TemplateID== id);
         } 
     }
 }

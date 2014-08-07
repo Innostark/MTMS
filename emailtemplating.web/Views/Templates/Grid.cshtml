@@ -1,13 +1,14 @@
-﻿@model IEnumerable<EmailTemplating.Models.Template>
+﻿@using System
+@model System.Collections.Generic.IEnumerable<EmailTemplating.Models.Template>
 
 @{
     ViewBag.Title = "Templates";
 }
 
-<h2>Templates <small>GRMergeVarMapMergeTagVarMergeVarMapItemMessageMessageAddressTemplateID</small></h2>
+<h2>Templates </h2>
 
 <p>
-    @Html.ActionLink("Create New Template", "Add")
+    @Html.ActionLink("Create New Template", "AddEdit")
 </p>
 <table class="table table-striped table-hover">
     <tr>
@@ -26,32 +27,35 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td style="width: 10%;">
-            @Html.DisplayFor(modelItem => item.Name)
-        </td>
-        <td style="width: 20%;">
-            @Html.DisplayFor(modelItem => item.Description)
-        </td>
-        <td class="mono" style="width: 40%; overflow: scroll; background: #e8eced;">
-            @Html.Raw(item.Body.Replace(Environment.NewLine, "<br />"))
-        </td>
-        <td class="small mono" style="width: 20%;">
-            @foreach (var tag in item.TagMap.MapItems)
-            {
-                <div>
-                    @Html.DisplayFor(m => tag.VariableName)
-                    =&gt;
-                    @Html.DisplayFor(m => tag.PropertyName)
-                </div>
-            }
-        </td>
-        <td style="width: 10%;">
-            @Html.ActionLink("Edit", "Edit", new { id=item.MergeVarMapID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.MergeVarMapID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model) {
+        <tr>
+            <td style="width: 10%;">
+                @Html.DisplayFor(modelItem => item.Name)
+            </td>
+            <td style="width: 20%;">
+                @Html.DisplayFor(modelItem => item.Description)
+            </td>
+            <td class="mono" style="width: 40%; overflow: scroll; background: #e8eced;">
+                @Html.Raw(item.Body.Replace(Environment.NewLine, "<br />"))
+            </td>
+            <td class="small mono" style="width: 20%;">
+                
+                    @foreach (var tag in item.TagMap.MapItems)
+                    {
+                        <div>
+                            @Html.DisplayFor(m => tag.VariableName)
+                            =&gt;
+                            @Html.DisplayFor(m => tag.PropertyName)
+                        </div>
+                    }
+                
+            </td>
+            <td style="width: 10%;">
+                @Html.ActionLink("Edit", "AddEdit", new { id=item.TemplateID }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.TemplateID })
+            </td>
+        </tr>
+    }
+
 
 </table>

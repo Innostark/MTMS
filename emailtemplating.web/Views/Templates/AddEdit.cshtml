@@ -1,4 +1,5 @@
-﻿@model EmailTemplating.Models.Template
+﻿@using EmailTemplating.Models
+@model EmailTemplating.Web.Models.TemplateViewModel
 @{
     ViewBag.Title = "Email Template";
 }
@@ -10,30 +11,48 @@
      @Html.AntiForgeryToken()
     @Html.ValidationSummary(true)
     <div style="float: right" >
-        <button type="submit" onClick="return ValidateFields();" class="btn btn-primary">Save</button>
+        <button type="submit" onClick="return ( ValidateFields() && validateRadioButtons())" class="btn btn-primary">Save</button>
         @Html.ActionLink("Cancel", "Grid", null, new { @class = "btn btn-default" })
     </div><fieldset class="form-horizontal">
-        <legend>Add/Edit </legend>
-        <br/>
-        <div class="form-group">
-            @Html.HiddenFor(model => model.MergeVarMapID)
-            @Html.LabelFor(model => model.Name, new { @class = "col-sm-2 control-label" })
-            <div class="col-sm-10">
-                @Html.TextBoxFor(model => model.Name, new { @class = " mandatory form-control" })
-                @Html.ValidationMessageFor(model => model.Name)
-            </div>
-        </div>
-        <table id="MergeTagMapsTable">
-            <tbody>
-                
-            </tbody>
-        </table>
-        <div class="col-sm-offset-2 col-sm-10">
-            <input type="button" class="btn btn-success" onclick="AddChoice()" value="Add Merge Tags" />
-        </div>
-        <input type="hidden" value="@(Model==null?0: Model.MapItems.Count)" id="mapItemsCount" name="O_" />
-    </fieldset>    
-} 
-<script type="text/javascript" src="~/Scripts/app/AddMergeVarMap.js"></script>           
+              <legend>Add/Edit </legend>
+              <br/>
+              <div class="form-group">
+                  @Html.HiddenFor(model => model.Template.TemplateID)
+                  @Html.LabelFor(model => model.Template.Name, new { @class = "col-sm-2 control-label" })
+                  <div class="col-sm-10">
+                      @Html.TextBoxFor(model => model.Template.Name, new { @class = " mandatory form-control"})
+                  </div>
+              </div>
+              <div class="form-group">
+                  @Html.LabelFor(model => model.Template.Description, new { @class = "col-sm-2 control-label" })
+                  <div class="col-sm-10">
+                      @Html.TextBoxFor(model => model.Template.Description, new { @class = " mandatory form-control"})
+                  </div>
+              </div>
+              <div class="form-group">
+                  @Html.LabelFor(model => model.Template.Body, new { @class = "col-sm-2 control-label" })
+                  <div class="col-sm-10">
+                      @Html.TextAreaFor(model => model.Template.Body, new { @class = " mandatory form-control"})
+                  </div>
+              </div>
+        
+              <label  >Select MergeVarMaps Tags</label>
+              <div class="col-sm-10">
+                  @foreach (var mergeVarMap in Model.MergeVarMaps)
+                  {
+                      <input id= '@mergeVarMap.Name' type="radio" value="@mergeVarMap.MergeVarMapID" name= "SelectedMergeVarMap" >
+                      <label for='@mergeVarMap.Name'> @mergeVarMap.Name</label>   
+                      <br/>
+                  }
+              </div>
+          </fieldset>
+}         
+<script type="text/javascript" src="~/Scripts/app/ValidateFields.js"></script>      
+<script type="text/javascript" >
+    
 
-}
+    function CheckValue() {
+        
+    }
+
+</script>     
