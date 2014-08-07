@@ -207,6 +207,7 @@
     <Content Include="Content\bootstrap.css.map" />
     <None Include="Properties\PublishProfiles\myhallpass.com - Web Deploy.pubxml" />
     <None Include="Scripts\jquery-1.9.0.intellisense.js" />
+    <Content Include="Scripts\app\AddMergeVarMap.js" />
     <Content Include="Scripts\app\common.js" />
     <Content Include="Scripts\app\testing.js" />
     <Content Include="Scripts\app\toggler.js" />
@@ -265,6 +266,8 @@
     <Content Include="Views\Message\Parking.cshtml" />
     <Content Include="Views\Message\Password.cshtml" />
     <Content Include="Views\Message\Promotion.cshtml" />
+    <Content Include="Views\MergeTagMaps\AddEdit.cshtml" />
+    <Content Include="Views\Templates\AddEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
