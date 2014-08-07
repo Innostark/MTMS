@@ -25,7 +25,6 @@ namespace EmailTemplating.Web.Controllers
         {
             UnitOfWork unitOfWork = new UnitOfWork();
             var mergeVarmaps = unitOfWork.MergerVarMapRepository.GetAllMergeVarMap();
-            //var dataset = new EmailTemplating.SampleData.DataSet();
             return View(mergeVarmaps);
         }
 

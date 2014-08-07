@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using EmailTemplating.Models;
+using EmailTemplating.Repository;
 
 namespace EmailTemplating.Web.Controllers
 {
@@ -22,7 +24,15 @@ namespace EmailTemplating.Web.Controllers
             return View(dataset.Templates);
         }
 
-        public ActionResult Add()
+        public ActionResult AddEdit(int? id)
+        {
+            //UnitOfWork unitOfWork = new UnitOfWork();
+            //MergeVarMap recordFromDb = unitOfWork.MergerVarMapRepository.Find((int)id);
+            //return View(recordFromDb);
+            UnitOfWork unitOfWork = new UnitOfWork();
+            return View();
+        }
+        public ActionResult AddEdit(Template obj)
         {
             return View("ForYouToImplement");
         }

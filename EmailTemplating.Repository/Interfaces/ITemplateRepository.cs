@@ -1,4 +1,5 @@
-﻿using EmailTemplating.Models;
+﻿using System.Collections.Generic;
+using EmailTemplating.Models;
 
 namespace EmailTemplating.Repository.Interfaces
 {
@@ -7,5 +8,6 @@ namespace EmailTemplating.Repository.Interfaces
     /// </summary>
     public interface ITemplateRepository : IBaseRepository<Template, int>
     {
+        IEnumerable<Template> GetAllTemplates();
     }
 }
