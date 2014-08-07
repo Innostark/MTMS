@@ -3,11 +3,14 @@
         return;
     var table = $("#MergeTagMapsTable");
     var mapItemCount = parseInt(document.getElementById('mapItemsCount').value);
-    var newRow = "<tr class='form-group'>" +
-                 "<td><label>Enter Variable Name: </label><input class='mandatory variable' type=\"text\" name=\"MapItems[" + mapItemCount + "].VariableName\" value=\"\" placeholder=\"Enter Variable Name\" data-val='true' /></td>" +
-                 "<td><label>Enter Property Name:</label><input class='mandatory property' type=\"text\" name=\"MapItems[" + mapItemCount + "].PropertyName\" value=\"\" placeholder=\"Enter Property Name\" /></td>" +
-                 "<td><a href='#' onclick='delMergeVarMapRow(this);' >Delete</a></td>" +
-                "</tr>";
+    var newRow = "<tr >" +
+                 "<td style='width: 20%;'><label class='col-sm-2 control-label'>VariableName: </label></td>" +
+                 "<td style='width: 25%;'><input class='mandatory form-control' type=\"text\" name=\"MapItems[" + mapItemCount + "].VariableName\" value=\"\" placeholder=\"Enter Variable Name\" data-val='true' /></td>" +
+                 "<td style='width: 20%;'><label class='col-sm-2 control-label'>PropertyName:</label></td>" +
+                 "<td style='width: 20%;'><input class='mandatory form-control' type=\"text\" name=\"MapItems[" + mapItemCount + "].PropertyName\" value=\"\" placeholder=\"Enter Property Name\" /></td>" +
+                 "<td style='width: 10%; padding-left:15px;'><a href='#' onclick='delMergeVarMapRow(this);' >Delete</a></td>" +
+                 "</tr>" +
+                 "<tr style='height:10px;'></tr>";
     table.append(newRow);
     document.getElementById('mapItemsCount').value = parseInt(document.getElementById('mapItemsCount').value) + 1;
 }

@@ -42,7 +42,7 @@
                             @Html.LabelFor(model => mapItem.VariableName, new { @class = "col-sm-2 control-label" })
                         </td>
                         <td style="width: 25%;">
-                            @Html.TextBox(variable,mapItem.VariableName,new { @class = "form-control" })
+                            @Html.TextBox(variable,mapItem.VariableName,new { @class = "mandatory form-control" })
                            
                            @* <input type="text" value="@mapItem.VariableName" name="@variable" />*@
                         </td>
@@ -51,7 +51,7 @@
 
                         </td>
                         <td style="width: 25%;">
-                            @Html.TextBox(variablePropertyName,mapItem.PropertyName,new { @class = "form-control" })
+                            @Html.TextBox(variablePropertyName,mapItem.PropertyName,new { @class = "mandatory form-control" })
                             @*<input type="text" value="@mapItem.PropertyName" name="@variablePropertyName" />*@
                         </td>
                         <td style="width: 10%; padding-left:15px;">
