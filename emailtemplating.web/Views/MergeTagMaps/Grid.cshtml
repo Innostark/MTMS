@@ -42,9 +42,11 @@
         <td>
             @Html.ActionLink("Edit", "AddEdit", new { id=item.MergeVarMapID }) |
             @Html.ActionLink("Delete", "Delete", new { id=item.MergeVarMapID })
-            <input type="hidden" id="errorMSG" value=@TempData["ErrorMessage"]/>
+            @Html.Hidden("errorMSG",TempData["ErrorMessage"])
+            @*<input type="hidden" id="errorMSG" value="@TempData["ErrorMessage"]"/>*@
         </td>
     </tr>
 }
 
 </table>
+<script type="text/javascript" src="~/Scripts/app/ValidateFields.js"></script> 

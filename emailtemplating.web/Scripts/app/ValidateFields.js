@@ -25,10 +25,16 @@ function validateRadioButtons() {
         }
     }
     if (counter == -1) {
-
         toastr.error("Please select MergeVarMaps Tags");
         return false;
     } else {
         return true;
     }
 }
+
+$(document).ready(function () {
+    if ($('#errorMSG').length == 0)
+        return;
+    if ($('#errorMSG').val().length > 0)
+        toastr.error($('#errorMSG').val());
+});
