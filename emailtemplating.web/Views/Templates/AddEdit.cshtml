@@ -40,7 +40,7 @@
               <div class="col-sm-10">
                   @foreach (var mergeVarMap in Model.MergeVarMaps)
                   {
-                      <input id= '@mergeVarMap.Name' type="radio" value="@mergeVarMap.MergeVarMapID" name= "SelectedMergeVarMap" >
+                      @Html.RadioButton("SelectedMergeVarMap", @mergeVarMap.MergeVarMapID,(Model.Template!=null && mergeVarMap.MergeVarMapID==Model.Template.MergeVarMapID));
                       <label for='@mergeVarMap.Name'> @mergeVarMap.Name</label>   
                       <br/>
                   }

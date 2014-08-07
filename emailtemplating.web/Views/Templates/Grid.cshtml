@@ -35,7 +35,7 @@
             <td style="width: 20%;">
                 @Html.DisplayFor(modelItem => item.Description)
             </td>
-            <td class="mono" style="width: 40%; overflow: scroll; background: #e8eced;">
+            <td class="mono" style="width: 40%;  background: #e8eced;">
                 @Html.Raw(item.Body.Replace(Environment.NewLine, "<br />"))
             </td>
             <td class="small mono" style="width: 20%;">
