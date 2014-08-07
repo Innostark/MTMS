@@ -1,4 +1,5 @@
-﻿using System.Data.Entity;
+﻿using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using EmailTemplating.Models;
 using EmailTemplating.Repository.Base;
@@ -35,5 +36,10 @@ namespace EmailTemplating.Repository.Repositories
         {
             return DbSet.Include(m => m.MapItems).FirstOrDefault(m => m.Name == name);
         }
+
+        public IEnumerable<MergeVarMap> GetAllMergeVarMap()
+        {
+            return DbSet.Include(x => x.MapItems);
+        } 
     }
 }
