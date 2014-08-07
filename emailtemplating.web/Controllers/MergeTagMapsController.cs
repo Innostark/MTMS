@@ -91,8 +91,14 @@ namespace EmailTemplating.Web.Controllers
                         uow.MergerVarMapItemRepository.Add(newItemToAdd);
                     }
                 }
-                uow.MergerVarMapItemRepository.SaveChanges();
             }
+
+            IEnumerable<MergeVarMapItem> mergeVarMapItems = mergeVarMapToUpdate.MapItems.Where(itemsToBeDeleted => obj.MapItems.Any(newItems => itemsToBeDeleted.MergeVarMapItemID != newItems.MergeVarMapItemID));
+            foreach (var mergeVarMapItem in mergeVarMapItems)
+            {
+                mergeVarMapToUpdate.MapItems.Remove(mergeVarMapItem);
+            }
+            uow.MergerVarMapItemRepository.SaveChanges();
         }
 
         [HttpPost]
