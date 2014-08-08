@@ -29,13 +29,13 @@ function setControlID() {
     var counter = $('#mapItemsCount').val();
     for (var i = 0; i < textVarList.length; i++) {
         $(textVarList[i]).attr('name', "MapItems[" + i + "].VariableName");
-        $(textVarList[i]).attr('name', "MapItems[" + i + "].VariableName");
+        //$(textVarList[i]).attr('name', "MapItems[" + i + "].VariableName");
         $(textPropList[i]).attr('name', "MapItems[" + i + "].PropertyName");
         $(hdMergeMapList[i]).attr('name', "MapItems[" + i + "].MergeVarMapItemID")
-                if (counter < i) {
-            debugger
-            $(textVarList[i]).closest('tr').remove();
-        }
+        //        if (counter < i) {
+        //    debugger
+        //    $(textVarList[i]).closest('tr').remove();
+        //}
     }
 
 }
