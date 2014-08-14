@@ -40,6 +40,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DbSource.cs" />
+    <Compile Include="Email.cs" />
     <Compile Include="MergeTagVar.cs" />
     <Compile Include="MergeVarMap.cs" />
     <Compile Include="MergeVarMapItem.cs" />

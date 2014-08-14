@@ -50,10 +50,12 @@
     <Compile Include="Base\BaseDbContext.cs" />
     <Compile Include="Base\BaseRepository.cs" />
     <Compile Include="Interfaces\IBaseRepository.cs" />
+    <Compile Include="Interfaces\IEmailRepository.cs" />
     <Compile Include="Interfaces\IMergeTagVarRepository.cs" />
     <Compile Include="Interfaces\IMergeVarMapItemRepository.cs" />
     <Compile Include="Interfaces\IMergeVarMapRepository.cs" />
     <Compile Include="Interfaces\ITemplateRepository.cs" />
+    <Compile Include="Repositories\EmailRepository.cs" />
     <Compile Include="Repositories\MergeTagVarRepository.cs" />
     <Compile Include="Repositories\MergeVarMapItemRepository.cs" />
     <Compile Include="Repositories\MergeVarMapRepository.cs" />

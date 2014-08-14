@@ -18,6 +18,8 @@ namespace EmailTemplating.Repository
         private IMergeVarMapItemRepository mergerVarMapItemRepository;
         private ITemplateRepository templateRepository;
         private IMergeTagVarRepository mergeTagVarRepository;
+        private IEmailRepository emailRepository;
+        
 
         private bool disposed;
         /// <summary>
@@ -76,7 +78,13 @@ namespace EmailTemplating.Repository
         {
             get { return mergeTagVarRepository ?? (mergeTagVarRepository = new MergeTagVarRepository(baseDbContext)); }
         }
-
+        /// <summary>
+        /// Email Repository
+        /// </summary>
+        public IEmailRepository EmailRepository
+        {
+            get { return emailRepository ?? (emailRepository = new EmailRepository(baseDbContext)); }
+        }
         /// <summary>
         /// Dispose
         /// </summary>

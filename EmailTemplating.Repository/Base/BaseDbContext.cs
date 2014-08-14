@@ -45,7 +45,12 @@ namespace EmailTemplating.Repository.Base
         /// <summary>
         /// Templates
         /// </summary>
-        public DbSet<Template> Templates { get; set; } 
+        public DbSet<Template> Templates { get; set; }
+
+        /// <summary>
+        /// Templates
+        /// </summary>
+        public DbSet<Email> Emails { get; set; } 
         #endregion
     }
 

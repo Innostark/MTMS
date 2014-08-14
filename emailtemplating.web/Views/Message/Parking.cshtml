@@ -1,4 +1,4 @@
-﻿@model IEnumerable<EmailTemplating.SampleData.Employee>
+﻿@model EmailTemplating.Web.Models.ParkingViewModel
 
 @{
     ViewBag.Title = "Employees";
@@ -9,7 +9,10 @@
 </h2>
 
 <p>
-    @Html.ActionLink("Send Email", "Send", null, new { @class = "btn btn-primary" })
+    @Html.ActionLink("Send Email", "SendParking", new { name = "nameValue",IsPreview=false,SelectedList="SelectedListValues"}, new { @class = "btn btn-primary",id="btnSendEmail"  })
+    @Html.ActionLink("Preview Email", "SendParking", new { name = "nameValue",IsPreview=true,SelectedList="SelectedListValues"}, new { @class = "btn btn-primary",id="btnPreviewEmail" })
+    
+    @Html.DropDownListFor(x=>x.SelectedEmail, new SelectList(Model.Emails,"EmailID","Category"), new { @class = "btn btn-primary",id="ddlEmail" })
 </p>
 
 <table id="GRID" class="table table-striped table-hover">
@@ -18,17 +21,20 @@
             <label for="chkTOGGLE"><input type="checkbox" id="chkTOGGLE" /> <span id="lblTOGGLE">select all</span></label>
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.FirstName)
+            @*@Html.DisplayNameFor(model => model.)*@
+            First Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.LastName)
+            @*@Html.DisplayNameFor(model => model.LastName)*@
+            Last Name
         </th>
         <th>
-            @Html.DisplayNameFor(model => model.Email)
+            @*@Html.DisplayNameFor(model => model.Email)*@
+            Email
         </th>
     </tr>
 
-@foreach (var item in Model) {
+@foreach (var item in Model.dataset) {
     <tr data-ref="@item.ID">
         <td>
             <input type="checkbox" />
@@ -50,4 +56,39 @@
 @section Scripts {
 
     <script type="text/javascript" src="@Url.Content("~/Scripts/app/toggler.js")"></script>
+<script>
+    $("#btnSendEmail").click(function (evt) {
+        $("#btnSendEmail").prop("href", ProcessValue($("#btnSendEmail").prop("href")));
+    });
+    $("#btnPreviewEmail").click(function (evt) {
+        $("#btnPreviewEmail").prop("href", ProcessValue($("#btnPreviewEmail").prop("href")));
+    });
+
+    
+    function ProcessValue(fakedUri) {
+        debugger
+        
+        var uri = fakedUri.replace("nameValue", $('#ddlEmail').val());
+        
+        uri = uri.replace("SelectedListValues", getSelectedList());
+
+        return uri;
+        
+    }
+    function getSelectedList() {
+        
+        var selectedList = "";
+        $("input:checkbox:checked").each(function ()
+        {
+            if ($(this).closest('tr').attr('data-ref') != undefined && $(this).closest('tr').attr('data-ref').length > 0) {
+                selectedList += $(this).closest('tr').attr('data-ref')+",";
+            }
+            
+        });
+        if (selectedList.length > 1)
+            selectedList = selectedList.substring(0, selectedList.length - 1);
+        return selectedList;
+    }
+</script>
+
 }

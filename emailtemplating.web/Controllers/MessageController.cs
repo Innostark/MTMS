@@ -5,6 +5,7 @@ using System.Web.Mvc;
 using EmailTemplating.Models;
 using EmailTemplating.Repository;
 using EmailTemplating.Repository.Repositories;
+using EmailTemplating.Web.Models;
 
 namespace EmailTemplating.Web.Controllers
 {
@@ -14,8 +15,11 @@ namespace EmailTemplating.Web.Controllers
         {
             return View();
         }
-
         public ActionResult Send()
+        {
+            return View("ForYouToImplement");
+        }
+        public ActionResult SendParking(string name, bool IsPreview, string SelectedList)
         {
             return View("ForYouToImplement");
         }
@@ -39,8 +43,13 @@ namespace EmailTemplating.Web.Controllers
 
         public ActionResult Parking()
         {
+            ParkingViewModel oVM = new ParkingViewModel();
             var dataset = new EmailTemplating.SampleData.DataSet();
-            return View(dataset.Employees.OrderBy(m => m.LastName).ThenBy(m => m.FirstName));
+            oVM.dataset = dataset.Employees.OrderBy(m => m.LastName).ThenBy(m => m.FirstName).ToList();
+            UnitOfWork unitOfWork = new UnitOfWork();
+            oVM.Emails = unitOfWork.EmailRepository.GetAllEmails();
+        
+            return View(oVM);
         }
 
         public ActionResult Sales()

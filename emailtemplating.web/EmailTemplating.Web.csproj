@@ -127,6 +127,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\DataController.cs" />
+    <Compile Include="Controllers\EmailsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\MergeTagMapsController.cs" />
     <Compile Include="Controllers\MessageController.cs" />
@@ -135,6 +136,8 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\ParkingViewModel.cs" />
+    <Compile Include="Models\EmailViewModel.cs" />
     <Compile Include="Models\TemplateViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
@@ -272,6 +275,8 @@
     <Content Include="Views\Message\Promotion.cshtml" />
     <Content Include="Views\MergeTagMaps\AddEdit.cshtml" />
     <Content Include="Views\Templates\AddEdit.cshtml" />
+    <Content Include="Views\Emails\Email.cshtml" />
+    <Content Include="Views\Emails\AddEdit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

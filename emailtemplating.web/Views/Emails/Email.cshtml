@@ -1,0 +1,64 @@
+﻿
+@using System
+@using EmailTemplating.Models
+
+@model System.Collections.Generic.IEnumerable<EmailTemplating.Models.Email>
+
+@{
+    
+    ViewBag.Title = "Emails";
+}
+
+<h2>Email Templates </h2>
+
+<p>
+    @Html.ActionLink("Create New Email", "AddEdit")
+</p>
+<table class="table table-striped table-hover">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Category)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Title)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Subject)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.DbSource)
+        </th>
+         <th>
+            @Html.DisplayNameFor(model => model.Template)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model) {
+        <tr>
+            <td style="width: 10%;">
+                @Html.DisplayFor(modelItem => item.Category)
+            </td>
+            <td style="width: 20%;">
+                @Html.DisplayFor(modelItem => item.Title)
+            </td>
+            <td style="width: 20%;">
+                @Html.DisplayFor(modelItem => item.Subject)
+            </td>
+            <td style="width: 20%;">
+                 @((DbSource) Convert.ToInt32( (Html.DisplayFor( modelItem => item.DbSource)).ToString()))
+            </td>
+            <td style="width: 20%;">
+                @Html.DisplayFor(modelItem => item.Template.Name)
+            </td>
+           
+          
+            <td style="width: 10%;">
+                @Html.ActionLink("Edit", "AddEdit", new { id=item.EmailID }) |
+                @Html.ActionLink("Delete", "Delete", new { id=item.EmailID})
+            </td>
+        </tr>
+    }
+
+
+</table>
