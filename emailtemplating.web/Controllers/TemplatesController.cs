@@ -1,7 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Web;
 using System.Web.Mvc;
 using EmailTemplating.Models;
 using EmailTemplating.Repository;
@@ -13,32 +10,31 @@ namespace EmailTemplating.Web.Controllers
     {
         //
         // GET: /Templates/
-
         public ActionResult Index()
         {
             return View();
         }
-
         public ActionResult Grid()
         {
             UnitOfWork unitOfWork = new UnitOfWork();
             var templates = unitOfWork.TemplateRepository.GetAllTemplates();
             return View(templates);
         }
-
         public ActionResult AddEdit(int? id)
         {
-            UnitOfWork unitOfWork = new UnitOfWork();
-            TemplateViewModel template = new TemplateViewModel();
-            var mergeVarMaps = unitOfWork.MergerVarMapRepository.GetAllMergeVarMap();
-            template.MergeVarMaps = mergeVarMaps;
-            if (id != null)
+            using (UnitOfWork unitOfWork = new UnitOfWork())
             {
-                var templates = unitOfWork.TemplateRepository.FindTemplate((int)id);
-                template.Template = templates;
+                TemplateViewModel template = new TemplateViewModel();
+                var mergeVarMaps = unitOfWork.MergerVarMapRepository.GetAllMergeVarMap();
+                template.MergeVarMaps = mergeVarMaps;
+                if (id != null)
+                {
+                    var templates = unitOfWork.TemplateRepository.FindTemplate((int) id);
+                    template.Template = templates;
+                    return View(template);
+                }
                 return View(template);
             }
-            return View(template);
         }
         [HttpPost]
         public ActionResult AddEdit(TemplateViewModel obj)

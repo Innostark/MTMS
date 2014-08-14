@@ -23,32 +23,26 @@ namespace EmailTemplating.Web.Controllers
         {
             return View("ForYouToImplement");
         }
-
         public ActionResult Password()
         {
-            var dataset = new EmailTemplating.SampleData.DataSet();
+            var dataset = new SampleData.DataSet();
             return View(dataset.Customers.OrderBy(m => m.LastName).ThenBy(m => m.FirstName));
         }
-
-
         public ActionResult Promotion(string id)
         {
             if (string.IsNullOrEmpty(id)) { id = "Unknown?"; }
             ViewBag.City = id;
 
-            var dataset = new EmailTemplating.SampleData.DataSet();
+            var dataset = new SampleData.DataSet();
             return View(dataset.Customers.Where(m => string.Equals(m.City, id, StringComparison.CurrentCultureIgnoreCase)).OrderBy(m => m.LastName).ThenBy(m => m.FirstName));
         }
-
-
         public ActionResult Parking()
         {
             ParkingViewModel oVM = new ParkingViewModel();
-            var dataset = new EmailTemplating.SampleData.DataSet();
+            var dataset = new SampleData.DataSet();
             oVM.dataset = dataset.Employees.OrderBy(m => m.LastName).ThenBy(m => m.FirstName).ToList();
             UnitOfWork unitOfWork = new UnitOfWork();
-            oVM.Emails = unitOfWork.EmailRepository.GetAllEmails();
-        
+            oVM.Emails = unitOfWork.EmailRepository.GetAllEmails();        
             return View(oVM);
         }
 
@@ -59,48 +53,8 @@ namespace EmailTemplating.Web.Controllers
             max_date = max_date.AddDays(-1 * max_date.Day);     //end of last month
             var min_date = new DateTime(max_date.Year, max_date.Month, 1);
             string period = min_date.ToString("MMMM, yyyy");
-
             ViewBag.Period = period;
             return View(dataset.BuildEmployeeSalesSummaryViewModel(min_date, max_date, period).OrderBy(m => m.LastName).ThenBy(m => m.FirstName));
         }
-
-        public void TestPattern()
-        {
-            UnitOfWork uow = new UnitOfWork();
-
-            
-        }
-
-        public void MergeVarMap()
-        {
-            UnitOfWork uow = new UnitOfWork();
-
-            MergeVarMap map = new MergeVarMap
-                {
-                    Name = "Name", 
-                    MapItems = new List<MergeVarMapItem> { new MergeVarMapItem { PropertyName = "Property Name", VariableName = "Variable Name" }}
-                };
-            uow.MergerVarMapRepository.Add(map);
-            uow.MergerVarMapRepository.SaveChanges();
-
-            uow.Dispose();
-
-
-
-
-        }
-
-        public void EditMap()
-        {
-            UnitOfWork unitOfWork = new UnitOfWork();
-            MergeVarMap recordFromDb = unitOfWork.MergerVarMapRepository.FindByName("Name");
-            recordFromDb.MapItems[0].PropertyName = "Property Name Changed";
-            unitOfWork.MergerVarMapRepository.SaveChanges();
-
-
-        }
-
-        
-
     }
 }

@@ -24,22 +24,23 @@ namespace EmailTemplating.Web.Controllers
 
         public ActionResult AddEdit(int? id)
         {
-            UnitOfWork unitOfWork = new UnitOfWork();
-            EmailViewModel email = new EmailViewModel();
-            var templates = unitOfWork.TemplateRepository.GetAllTemplates();
-            email.Templates = templates;
-         
-            if (id != null)
+            using (UnitOfWork unitOfWork = new UnitOfWork())
             {
-                var emailM = unitOfWork.EmailRepository.Find((int)id);
+                EmailViewModel email = new EmailViewModel();
+                var templates = unitOfWork.TemplateRepository.GetAllTemplates();
                 email.Templates = templates;
+                if (id != null)
+                {
+                    var emailM = unitOfWork.EmailRepository.Find((int) id);
+                    email.Templates = templates;
 
-                email.SelectedDbSource = emailM.DbSource;
-                email.Email = emailM;
-                email.SelectedTemplate = emailM.TemplateID.ToString();
+                    email.SelectedDbSource = emailM.DbSource;
+                    email.Email = emailM;
+                    email.SelectedTemplate = emailM.TemplateID.ToString();
+                    return View(email);
+                }
                 return View(email);
             }
-             return View(email);
         }
         [HttpPost]
         public ActionResult AddEdit(EmailViewModel obj)

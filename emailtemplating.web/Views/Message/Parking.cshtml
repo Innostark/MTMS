@@ -8,12 +8,17 @@
     Employees
 </h2>
 
-<p>
-    @Html.ActionLink("Send Email", "SendParking", new { name = "nameValue",IsPreview=false,SelectedList="SelectedListValues"}, new { @class = "btn btn-primary",id="btnSendEmail"  })
-    @Html.ActionLink("Preview Email", "SendParking", new { name = "nameValue",IsPreview=true,SelectedList="SelectedListValues"}, new { @class = "btn btn-primary",id="btnPreviewEmail" })
-    
-    @Html.DropDownListFor(x=>x.SelectedEmail, new SelectList(Model.Emails,"EmailID","Category"), new { @class = "btn btn-primary",id="ddlEmail" })
-</p>
+    <div class="form-group" style="width: 100%; float: left">
+        <div class="col-md-2">
+            @Html.ActionLink("Send Email", "SendParking", new { name = "nameValue",IsPreview=false,SelectedList="SelectedListValues"}, new { @class = "btn btn-primary",id="btnSendEmail"  })
+        </div>
+        <div class="col-md-2">
+            @Html.ActionLink("Preview Email", "SendParking", new { name = "nameValue",IsPreview=true,SelectedList="SelectedListValues"}, new { @class = "btn btn-primary",id="btnPreviewEmail" })
+        </div>
+        <div class="col-md-2">
+            @Html.DropDownListFor(x=>x.SelectedEmail, new SelectList(Model.Emails,"EmailID","Category"), new { @class = "form-control col-sm-2",id="ddlEmail" })
+        </div>
+    </div>
 
 <table id="GRID" class="table table-striped table-hover">
     <tr>
@@ -66,24 +71,17 @@
 
     
     function ProcessValue(fakedUri) {
-        debugger
-        
         var uri = fakedUri.replace("nameValue", $('#ddlEmail').val());
-        
         uri = uri.replace("SelectedListValues", getSelectedList());
-
         return uri;
-        
     }
     function getSelectedList() {
-        
         var selectedList = "";
         $("input:checkbox:checked").each(function ()
         {
             if ($(this).closest('tr').attr('data-ref') != undefined && $(this).closest('tr').attr('data-ref').length > 0) {
                 selectedList += $(this).closest('tr').attr('data-ref')+",";
             }
-            
         });
         if (selectedList.length > 1)
             selectedList = selectedList.substring(0, selectedList.length - 1);
