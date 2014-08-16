@@ -16,9 +16,11 @@ namespace EmailTemplating.Web.Controllers
 
         public ActionResult Email()
         {
-            
-            UnitOfWork unitOfWork = new UnitOfWork();
-            var emails = unitOfWork.EmailRepository.GetAllEmails();
+            IEnumerable<Email> emails;
+            using(UnitOfWork unitOfWork = new UnitOfWork())
+            {
+                emails = unitOfWork.EmailRepository.GetAllEmails().ToList();                
+            }
             return View(emails);
         }
 
